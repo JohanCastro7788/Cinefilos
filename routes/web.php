@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FuncionController;
+use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\SalaController;
 use App\Http\Controllers\SillaController;
 use App\Http\Controllers\TeatroController;
@@ -31,3 +33,7 @@ Route::resource('salas', SalaController::class);
 Route::get('sillas/bind/{id}', [SillaController::class, 'index'])->name('sillas.bind');
 Route::get('sillas/create/{id}', [SillaController::class, 'create'])->name('sillas.porsala.create');
 Route::resource('sillas', SillaController::class);
+
+
+Route::resource('peliculas', PeliculaController::class);
+Route::resource('funcions', FuncionController::class);

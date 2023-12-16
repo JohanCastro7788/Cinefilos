@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Sala
+    Pelicula
 @endsection
 
 @section('content')
@@ -13,13 +13,13 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Salas del teatro ' . $teatro->teatro_nombre) }}
+                                {{ __('Pelicula') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('salas.tecreate', $teatro->teatro_id) }}"
-                                    class="btn btn-primary btn-sm float-right" data-placement="left">
-                                    {{ __('Crear Sala') }}
+                                <a href="{{ route('peliculas.create') }}" class="btn btn-primary btn-sm float-right"
+                                    data-placement="left">
+                                    {{ __('Create New') }}
                                 </a>
                             </div>
                         </div>
@@ -37,41 +37,35 @@
                                     <tr>
                                         <th>No</th>
 
-                                        <th>Consecutivo</th>
-                                        <th>Tipo Sala</th>
-                                        <th>Teatro</th>
-                                        <th>Cantidad de sillas
-                                        <th>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Duración</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($salas as $sala)
+                                    @foreach ($peliculas as $pelicula)
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-                                            <td>00{{ $sala->consecutivo }}</td>
-                                            <td>{{ $sala->tipo_sala }}</td>
-                                            <td>{{ $teatro->teatro_nombre }}</td>
-                                            <td>{{ $sala->sillas_count }}</td>
+                                            <td>{{ $pelicula->peli_nombre }}</td>
+                                            <td>{{ $pelicula->peli_descrip }}</td>
+                                            <td>{{ $pelicula->peli_duracion }} Minutos</td>
 
                                             <td>
-                                                <form action="{{ route('salas.destroy', $sala->sala_id) }}" method="POST">
+                                                <form action="{{ route('peliculas.destroy', $pelicula->pelicula_id) }}"
+                                                    method="POST">
                                                     <a class="btn btn-sm btn-primary "
-                                                        href="{{ route('salas.show', $sala->sala_id) }}"><i
+                                                        href="{{ route('peliculas.show', $pelicula->pelicula_id) }}"><i
                                                             class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success"
-                                                        href="{{ route('salas.edit', $sala->sala_id) }}"><i
+                                                        href="{{ route('peliculas.edit', $pelicula->pelicula_id) }}"><i
                                                             class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i
                                                             class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-
-                                                    <a class="btn btn-sm btn-success"
-                                                        href="{{ route('sillas.bind', $sala->sala_id) }}"><i
-                                                            class="fa fa-fw fa-edit"></i> {{ __('Sillas') }}</a>
                                                 </form>
                                             </td>
                                         </tr>
@@ -81,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $salas->links() !!}
+                {!! $peliculas->links() !!}
             </div>
         </div>
     </div>

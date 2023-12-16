@@ -37,6 +37,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('teatros.index') }}">{{ __('Teatros') }}</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Lista de Funciones y Peliculas
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('peliculas.index') }}"> Peliculas </a>
+                                <a class="dropdown-item" href="{{ route('funcions.index') }}"> Funciones </a>
+                            </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
