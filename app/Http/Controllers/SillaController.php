@@ -108,9 +108,11 @@ class SillaController extends Controller
      */
     public function destroy($id)
     {
-        $silla = Silla::find($id)->delete();
+        $silla = Silla::find($id);
+        $sala = $silla->sala_id;
+        $silla->delete();
 
-        return redirect()->route('sillas.index')
+        return redirect()->route('sillas.bind', $sala)
             ->with('success', 'Silla deleted successfully');
     }
 }

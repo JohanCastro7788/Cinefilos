@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('modal_venta')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
@@ -26,8 +27,19 @@
                                             <strong>Teatro:</strong>
                                             {{ $funcion->sala->teatro->teatro_nombre }}
                                         </div>
+                                        <div class="form-group">
+                                            <strong>Formato:</strong>
+                                            {{ $funcion->sala->tipo_sala }}
+                                        </div>
+                                        <div class="form-group">
+                                            <strong>Precio:</strong>
+                                            ${{ number_format($funcion->valor_func, 2, ',', '.') }}
+                                        </div>
 
-                                        <a href="#" class="btn btn-primary mt-4">Comprar Tickets</a>
+                                        <a href="#" class="btn btn-primary mt-4"
+                                            onclick="setFuncionId({{ $funcion->funcion_id }})" data-bs-toggle="modal"
+                                            data-bs-target="#modalVenta">Comprar
+                                            Tickets</a>
                                     </div>
                                 </div>
                             </div>
@@ -37,4 +49,13 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        // Obtener modal
+
+        function abrirModalCompra() {
+            var modalVenta = new bootstrap.Modal(document.getElementById('modalVenta'));
+
+            modalVenta.show();
+        }
+    </script>
 @endsection
