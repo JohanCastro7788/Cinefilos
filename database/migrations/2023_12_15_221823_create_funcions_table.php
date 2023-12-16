@@ -13,17 +13,20 @@ return new class extends Migration
     {
         Schema::create('funcions', function (Blueprint $table) {
             $table->id('funcion_id');
+            $table->unsignedBigInteger('pelicula_id');
             $table->foreign('pelicula_id')
-            ->references('pelicula_id')
-            ->on('peliculas')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+                ->references('pelicula_id')
+                ->on('peliculas')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('sala_id');
             $table->foreign('sala_id')
-            ->references('sala_id')
-            ->on('salas')
-            ->onUpdate('cascade')
-            ->onUpdate('cascade');
+                ->references('sala_id')
+                ->on('salas')
+                ->onUpdate('cascade')
+                ->onUpdate('cascade');
             $table->timestamp('fecha_hora_func');
+            $table->integer('valor_func');
             $table->timestamps();
         });
     }

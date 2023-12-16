@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('sillas', function (Blueprint $table) {
             $table->id('silla_id');
             $table->string('concecutivo');
+            $table->unsignedBigInteger('sala_id');
             $table->foreign('sala_id')
-            ->references('sala_id')
-            ->on('salas')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+                ->references('sala_id')
+                ->on('salas')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->enum('tipo_silla', ['vip', 'general']);
             $table->string('columna');
             $table->integer('numero');

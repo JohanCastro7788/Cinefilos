@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id('sala_id');
             $table->integer('consecutivo');
             $table->enum('tipo_sala', ['2d', '3d']);
+            $table->unsignedBigInteger('teatro_id');
             $table->foreign('teatro_id')
-            ->references('teatro_id')
-            ->on('teatros')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+                ->references('teatro_id')
+                ->on('teatros')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

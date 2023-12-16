@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('teatros', function (Blueprint $table) {
             $table->id('teatro_id');
+            $table->unsignedBigInteger('cod_ciudad');
             $table->foreign('cod_ciudad')
-            ->references('cod_ciudad')
-            ->on('ciudads')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+                ->references('cod_ciudad')
+                ->on('ciudads')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->string('teatro_nombre');
             $table->string('direccion');
             $table->timestamps();

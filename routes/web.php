@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\SalaController;
+use App\Http\Controllers\SillaController;
+use App\Http\Controllers\TeatroController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('teatros', TeatroController::class)->names([
+    'index' => 'teatros.index'
+]);
+
+Route::get('salas/bind/{id}', [SalaController::class, 'index'])->name('salas.bind');
+Route::get('salas/create/{id}', [SalaController::class, 'create'])->name('salas.tecreate');
+Route::resource('salas', SalaController::class);
+
+Route::get('sillas/bind/{id}', [SillaController::class, 'index'])->name('sillas.bind');
+Route::get('sillas/create/{id}', [SillaController::class, 'create'])->name('sillas.porsala.create');
+Route::resource('sillas', SillaController::class);
